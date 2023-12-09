@@ -43,14 +43,14 @@ public class PlayerMove : Singleton<PlayerMove>, IState<PlayerController>
     {
 
     }
+    public void UpdateActive(PlayerController stateController)
+    {
+        stateController.MoveUpdate();
+    }
 
     public void FixedUpdateActive(PlayerController stateController)
     {
-
-    }
-    public void UpdateActive(PlayerController stateController)
-    {
-    
+        stateController.MoveFixedUpdate();
     }
 }
 
