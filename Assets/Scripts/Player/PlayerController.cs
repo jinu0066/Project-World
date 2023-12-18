@@ -28,18 +28,11 @@ public class PlayerController : MonoBehaviour
 
 	private Rigidbody2D rigidBody2D;
 	private Vector3 m_Velocity = Vector3.zero;
-	private bool grounded;            // Whether or not the player is grounded.
+	private bool grounded = true;            // Whether or not the player is grounded.
 	private bool jump;
 	private bool wasCrouching = false;
 	private bool facingRight = true;  // For determining which way the player is currently facing.		
 	private float horizontalMove = 0f;
-
-	public UnityEvent OnLandEvent;
-
-	[System.Serializable]
-	public class BoolEvent : UnityEvent<bool> { }
-
-	public BoolEvent OnCrouchEvent;
 
 
 	private PlayerStateController playerStateController;
@@ -50,11 +43,6 @@ public class PlayerController : MonoBehaviour
         playerStateController = new PlayerStateController(this);
         rigidBody2D = GetComponent<Rigidbody2D>();
 
-		if (OnLandEvent == null)
-			OnLandEvent = new UnityEvent();
-
-		if (OnCrouchEvent == null)
-			OnCrouchEvent = new BoolEvent();
 	}
 
     private void Start()
@@ -119,7 +107,6 @@ public class PlayerController : MonoBehaviour
 				if (!wasCrouching)
 				{
 					wasCrouching = true;
-					OnCrouchEvent.Invoke(true);
 				}
 
 				// Reduce the speed by the crouchSpeed multiplier
@@ -138,7 +125,6 @@ public class PlayerController : MonoBehaviour
 				if (wasCrouching)
 				{
 					wasCrouching = false;
-					OnCrouchEvent.Invoke(false);
 				}
 			}
 

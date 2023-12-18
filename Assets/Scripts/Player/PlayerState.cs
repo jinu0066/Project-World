@@ -10,7 +10,7 @@ public class PlayerIdle : Singleton<PlayerIdle>, IState<PlayerController>
     }
     public void Enter(PlayerController stateController)
     {
-
+        
     }
 
     public void Exit(PlayerController stateController)
